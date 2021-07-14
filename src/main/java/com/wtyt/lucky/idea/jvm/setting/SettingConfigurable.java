@@ -20,7 +20,7 @@ public class SettingConfigurable implements Configurable {
     private final SettingForm settingForm;
 
     public SettingConfigurable() {
-        System.out.println("init");
+        System.out.println("click Global Jvm Parameter");
         this.settingForm = new SettingForm();
     }
 

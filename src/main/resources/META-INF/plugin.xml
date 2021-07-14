@@ -10,6 +10,14 @@
     ]]>
     </description>
 
+    <change-notes><![CDATA[
+        1.0.0
+        <ul>
+            <li>new plugin, just use it to add global jvm parameter.</li>
+        </ul>
+      ]]>
+    </change-notes>
+
     <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
          on how to target different products -->
     <!-- uncomment to enable plugin in all products
@@ -22,7 +30,7 @@
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
         <!--  全局配置  -->
-        <applicationConfigurable instance="com.wtyt.lucky.idea.jvm.setting.SettingConfigurable" displayName="Global Jvm Parameter"/>
+        <applicationConfigurable instance="com.wtyt.lucky.idea.jvm.setting.SettingConfigurable" displayName="Global Jvm Parameter" />
         <!--  运行时的命令行参数  -->
         <java.programPatcher implementation="com.wtyt.lucky.idea.jvm.MyJvmPreRunChecks"/>
     </extensions>
