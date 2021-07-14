@@ -1,0 +1,33 @@
+<idea-plugin>
+    <id>com.wtyt.lucky.idea.global-jvm-param</id>
+    <name>global jvm param</name>
+    <vendor email="maxinchun@log56.com" url="https://github.com/codecly259/global-jvm-parameter-intellij-plugin">maxinchun</vendor>
+
+    <description><![CDATA[
+    <p>manage jvm parameter for all projects</p>
+    <br/>
+    <p>全局jvm参数管理</p>
+    ]]>
+    </description>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <!-- uncomment to enable plugin in all products
+    <depends>com.intellij.modules.lang</depends>
+    -->
+    <depends>com.intellij.modules.java</depends>
+
+    <idea-version since-build="181.0"/>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+        <!--  全局配置  -->
+        <applicationConfigurable instance="com.wtyt.lucky.idea.jvm.setting.SettingConfigurable" displayName="Global Jvm Parameter"/>
+        <!--  运行时的命令行参数  -->
+        <java.programPatcher implementation="com.wtyt.lucky.idea.jvm.MyJvmPreRunChecks"/>
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+    </actions>
+</idea-plugin>
