@@ -1,10 +1,11 @@
 <idea-plugin>
     <id>com.wtyt.lucky.idea.global-jvm-param</id>
     <name>Global Jvm Parameter</name>
+    <version>1.0.0</version>
     <vendor email="maxinchun@log56.com" url="https://github.com/codecly259/global-jvm-param">maxinchun</vendor>
 
     <description><![CDATA[
-    <p>manage jvm parameter for all projects</p>
+    <p>add custom jvm parameter for all projects, and append them to run option like `Application Run`.</p>
     <br/>
     <p>全局jvm参数管理</p>
     ]]>
@@ -25,6 +26,7 @@
     -->
     <depends>com.intellij.modules.java</depends>
 
+    <!--    <idea-version since-build="193" until-build="193.*"/>-->
     <idea-version since-build="181.0"/>
 
     <extensions defaultExtensionNs="com.intellij">
