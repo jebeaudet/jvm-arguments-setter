@@ -5,9 +5,33 @@
     <vendor email="maxinchun@log56.com" url="https://github.com/codecly259/global-jvm-param">maxinchun</vendor>
 
     <description><![CDATA[
-    <p>add custom jvm parameter for all projects, and append them to run option like `Application Run`.</p>
+    <p>add custom jvm parameter for all projects, and append them to run option like <b>Application Run</b>.</p>
+
+    <p>usage:</p>
+    <ul>
+        <li> File | Settings | Other Settings | <b>Global Jvm Parameter</b> </li>
+        <li> If configure NAME and VALUE, -DNAME=VALUE will be added to jvm parameter </li>
+        <li> If only configure NAME, NAME will be added to jvm parameter; for example -javaagent:D:\test\test-agant.jar </li>
+        <li> The parameters configured above will be added to the startup command when you click run/debug button </li>
+    </ul>
+
     <br/>
+
+    <img src="https://gitee.com/maxinchun/images-bed/raw/master/imgs/global_jvm_parameter.jpg" >
+
+    <br/>
+
     <p>全局jvm参数管理</p>
+
+    <p>中文说明:</p>
+    <ul>
+        <li> File | Settings | Other Settings | <b>Global Jvm Parameter</b> </li>
+        <li> 如果配置了 NAME 和 VALUE, -DNAME=VALUE 会增加到 jvm 参数中 </li>
+        <li> 如果只配置了 NAME, 配置的 NAME 值会直接添加启动命令行中，如: -javaagent:D:\test\test-agant.jar </li>
+        <li> 当店家 run/debug 启动项目时，上面配置的参数会添加在启动命令中 </li>
+    </ul>
+
+    <br/>
     ]]>
     </description>
 
