@@ -1,64 +1,31 @@
 <idea-plugin>
     <id>com.wtyt.lucky.idea.global-jvm-param</id>
     <name>Global Jvm Parameter</name>
-    <version>1.0.0</version>
+    <version>1.0.2</version>
     <vendor email="maxinchun@log56.com" url="https://github.com/codecly259/global-jvm-param">maxinchun</vendor>
 
     <description><![CDATA[
-    <p>add custom jvm parameter for all projects, and append them to run option like <b>Application Run</b>.</p>
+    <p>Add custom jvm arguments for all projects, and append them to run option like <b>Application Run</b>.</p>
 
     <p>usage:</p>
     <ul>
-        <li> File | Settings | Other Settings | <b>Global Jvm Parameter</b> </li>
-        <li> If configure NAME and VALUE, -DNAME=VALUE will be added to jvm parameter </li>
-        <li> If only configure NAME, NAME will be added to jvm parameter; for example -javaagent:D:\test\test-agant.jar </li>
+        <li> File | Settings | Other Settings | <b>JVM Arguments</b> </li>
+        <li> If configure Name and Value, -DName=Value will be added to jvm parameter </li>
+        <li> If only configure Name, Name will be added to jvm parameter; for example -javaagent:D:\test\test-agant.jar </li>
         <li> The parameters configured above will be added to the startup command when you click run/debug button </li>
-    </ul>
-
-    <br/>
-
-    <img src="https://raw.githubusercontent.com/codecly259/global-jvm-param/master/doc/image/screen/global_jvm_parameter.jpg" >
-
-    <br/>
-
-    <p>全局jvm参数管理</p>
-
-    <p>中文说明:</p>
-    <ul>
-        <li> File | Settings | Other Settings | <b>Global Jvm Parameter</b> </li>
-        <li> 如果配置了 NAME 和 VALUE, -DNAME=VALUE 会增加到 jvm 参数中 </li>
-        <li> 如果只配置了 NAME, 配置的 NAME 值会直接添加启动命令行中，如: -javaagent:D:\test\test-agant.jar </li>
-        <li> 当店家 run/debug 启动项目时，上面配置的参数会添加在启动命令中 </li>
     </ul>
 
     <br/>
     ]]>
     </description>
 
-    <change-notes><![CDATA[
-        1.0.0
-        <ul>
-            <li>new plugin, just use it to add global jvm parameter.</li>
-        </ul>
-      ]]>
-    </change-notes>
-
-    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
-         on how to target different products -->
-    <!-- uncomment to enable plugin in all products
-    <depends>com.intellij.modules.lang</depends>
-    -->
     <depends>com.intellij.modules.java</depends>
 
-    <!--    <idea-version since-build="193" until-build="193.*"/>-->
     <idea-version since-build="181.0"/>
 
     <extensions defaultExtensionNs="com.intellij">
-        <!-- Add your extensions here -->
-        <!--  全局配置  -->
-        <applicationConfigurable instance="com.wtyt.lucky.idea.jvm.setting.SettingConfigurable" displayName="Global Jvm Parameter" />
-        <!--  运行时的命令行参数  -->
-        <java.programPatcher implementation="com.wtyt.lucky.idea.jvm.MyJvmPreRunChecks"/>
+        <applicationConfigurable instance="com.wtyt.lucky.idea.jvm.setting.SettingConfigurable" displayName="JVM Arguments" />
+        <java.programPatcher implementation="com.wtyt.lucky.idea.jvm.JVMArgumentAppenderProgramPatcher"/>
     </extensions>
 
     <actions>

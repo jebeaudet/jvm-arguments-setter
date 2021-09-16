@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id 'org.jetbrains.intellij' version '0.7.2'
+    id 'org.jetbrains.intellij' version '1.1.6'
 }
 
 group 'com.wtyt.lucky.idea'
@@ -18,8 +18,9 @@ dependencies {
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
-    version '2019.1.2'
-    updateSinceUntilBuild false
+    version.set('2021.2.1')
+    updateSinceUntilBuild.set(false)
+    plugins = ['java']
 }
 
 publishPlugin {

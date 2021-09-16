@@ -3,77 +3,87 @@ package com.wtyt.lucky.idea.jvm.setting;
 import com.intellij.util.ui.EditableModel;
 
 import javax.swing.table.AbstractTableModel;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * MyJvmTableModel
- *
  * @author huzunrong
  * @since 1.0
  */
-public class MyJvmTableModel extends AbstractTableModel implements EditableModel {
-
+public class JVMArgumentsTableModel extends AbstractTableModel implements EditableModel
+{
     List<Object[]> list = new ArrayList<>();
 
-    private String[] head = {"", "NAME", "VALUE"};
+    private String[] head = {"", "Name", "Value"};
 
     private Class[] typeArray = {Boolean.class, Object.class, Object.class};
 
     @Override
-    public int getRowCount() {
+    public int getRowCount()
+    {
         return list.size();
     }
 
     @Override
-    public int getColumnCount() {
+    public int getColumnCount()
+    {
         return head.length;
     }
 
     @Override
-    public String getColumnName(int column) {
+    public String getColumnName(int column)
+    {
         return head[column];
     }
 
     @Override
-    public Object getValueAt(int rowIndex, int columnIndex) {
+    public Object getValueAt(int rowIndex, int columnIndex)
+    {
         return list.get(rowIndex)[columnIndex];
     }
 
     @Override
-    public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+    public void setValueAt(Object aValue, int rowIndex, int columnIndex)
+    {
         list.get(rowIndex)[columnIndex] = aValue;
         fireTableCellUpdated(rowIndex, columnIndex);
     }
 
     @Override
-    public Class<?> getColumnClass(int columnIndex) {
+    public Class<?> getColumnClass(int columnIndex)
+    {
         return typeArray[columnIndex];
     }
 
     @Override
-    public boolean isCellEditable(int rowIndex, int columnIndex) {
+    public boolean isCellEditable(int rowIndex, int columnIndex)
+    {
         return true;
     }
 
-    public void addRow(boolean enable, String name, String value) {
+    public void addRow(boolean enable, String name, String value)
+    {
         list.add(new Object[]{enable, name, value});
         fireTableRowsInserted(getRowCount() - 1, getRowCount());
     }
 
-    public void clear() {
+    public void clear()
+    {
         list.clear();
         fireTableDataChanged();
     }
 
     @Override
-    public void addRow() {
+    public void addRow()
+    {
         list.add(new Object[]{true, "", ""});
         fireTableRowsInserted(getRowCount() - 1, getRowCount());
     }
 
     @Override
-    public void exchangeRows(int oldIndex, int newIndex) {
+    public void exchangeRows(int oldIndex, int newIndex)
+    {
         Object[] objects = list.get(oldIndex);
         list.set(oldIndex, list.get(newIndex));
         list.set(newIndex, objects);
@@ -81,12 +91,14 @@ public class MyJvmTableModel extends AbstractTableModel implements EditableModel
     }
 
     @Override
-    public boolean canExchangeRows(int oldIndex, int newIndex) {
+    public boolean canExchangeRows(int oldIndex, int newIndex)
+    {
         return true;
     }
 
     @Override
-    public void removeRow(int idx) {
+    public void removeRow(int idx)
+    {
         list.remove(idx);
         fireTableRowsDeleted(0, getRowCount());
     }

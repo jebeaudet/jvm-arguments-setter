@@ -10,8 +10,6 @@ import org.jetbrains.annotations.Nullable;
 import javax.swing.*;
 
 /**
- * 类描述
- *
  * @author Lucky-maxinchun
  * @date 2021/7/14 13:56
  */
@@ -20,14 +18,13 @@ public class SettingConfigurable implements Configurable {
     private final SettingForm settingForm;
 
     public SettingConfigurable() {
-        System.out.println("click Global Jvm Parameter");
         this.settingForm = new SettingForm();
     }
 
     @Nls(capitalization = Nls.Capitalization.Title)
     @Override
     public String getDisplayName() {
-        return "Global Jvm Parameter";
+        return "JVM Arguments";
     }
 
     @Nullable
