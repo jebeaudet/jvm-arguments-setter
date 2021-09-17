@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>com.wtyt.lucky.idea.global-jvm-param</id>
-    <name>Global Jvm Parameter</name>
-    <version>1.0.2</version>
+    <name>JVM Arguments</name>
+    <version>1.0.3</version>
     <vendor email="maxinchun@log56.com" url="https://github.com/codecly259/global-jvm-param">maxinchun</vendor>
 
     <description><![CDATA[
@@ -24,7 +24,7 @@
     <idea-version since-build="181.0"/>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationConfigurable instance="com.wtyt.lucky.idea.jvm.setting.SettingConfigurable" displayName="JVM Arguments" />
+        <applicationConfigurable instance="com.wtyt.lucky.idea.jvm.setting.SettingConfigurable" displayName="JVM Arguments"/>
         <java.programPatcher implementation="com.wtyt.lucky.idea.jvm.JVMArgumentAppenderProgramPatcher"/>
     </extensions>
 

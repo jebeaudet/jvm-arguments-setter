@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'com.wtyt.lucky.idea'
-version '1.0.0'
+version '1.0.3'
 
 sourceCompatibility = 1.8
 
@@ -13,7 +13,6 @@ repositories {
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
@@ -27,4 +26,4 @@ publishPlugin {
     token = System.getenv("ORG_GRADLE_PROJECT_intellijPublishToken")
 }
 
-[compileJava,compileTestJava]*.options*.encoding = 'UTF-8'
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'

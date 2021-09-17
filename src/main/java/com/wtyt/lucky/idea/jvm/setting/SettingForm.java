@@ -1,19 +1,23 @@
 package com.wtyt.lucky.idea.jvm.setting;
 
-import com.intellij.ui.TableUtil;
-import com.intellij.ui.ToolbarDecorator;
-import com.intellij.ui.table.JBTable;
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+import java.util.Arrays;
+import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.event.TableModelListener;
 
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import javax.swing.*;
-import javax.swing.event.TableModelListener;
-
-import java.awt.*;
-import java.util.Objects;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import com.intellij.openapi.diagnostic.Logger;
+import com.intellij.ui.TableUtil;
+import com.intellij.ui.ToolbarDecorator;
+import com.intellij.ui.table.JBTable;
 
 /**
  * @author Lucky-maxinchun
@@ -21,6 +25,9 @@ import java.util.stream.Stream;
  */
 public class SettingForm
 {
+    private static final Logger logger = Logger.getInstance(SettingForm.class);
+    private static final String SEPARATOR = "<@!<\\@";
+
     public JPanel mainPanel;
     private JTextField jvmParameterText;
     private JPanel decorationLayoutPanel;
@@ -28,16 +35,19 @@ public class SettingForm
 
     private TableModelListener tableModelListener = event ->
     {
-        String jvmParameter = dataModel.list.stream().filter(args -> Objects.equals(true, args[0])).filter(
+        String jvmParameter = dataModel.list.stream().filter(args -> Objects.equals(Boolean.TRUE, args[0])).filter(
                 args -> StringUtils.isNotEmpty(String.valueOf(args[1]))).map(args ->
                                                                              {
-                                                                                 String c2 = String.valueOf(args[2]);
-                                                                                 if (StringUtils.isEmpty(c2))
+                                                                                 String key = args[1].toString();
+                                                                                 String value = String.valueOf(args[2]);
+                                                                                 if (StringUtils.isEmpty(value))
                                                                                  {
-                                                                                     return String.valueOf(args[1]);
+                                                                                     return key;
                                                                                  }
+                                                                                 String argument = "-D" + key + "=" + value;
                                                                                  return StringUtils.containsWhitespace(
-                                                                                         c2) ? "\"-D" + args[1] + "=" + c2 + "\"" : "-D" + args[1] + "=" + c2;
+                                                                                         value) ? String.format(
+                                                                                         "\"%s\"", argument) : argument;
                                                                              }).collect(Collectors.joining(" "));
         jvmParameterText.setText(jvmParameter);
         jvmParameterText.setToolTipText(jvmParameter);
@@ -64,16 +74,20 @@ public class SettingForm
 
     public String getJvmParameterTableText()
     {
-        return dataModel.list.stream().flatMap(
-                objects -> Stream.of(objects).map(object -> StringUtils.isEmpty(object.toString()) ? " " : object.toString())).collect(
-                Collectors.joining("@@@"));
+        return dataModel.list.stream().filter(args -> StringUtils.isNotBlank(String.valueOf(args[1]))).flatMap(
+                                objects -> Stream.of(objects)
+                                                 .map(object -> StringUtils.defaultIfBlank(object.toString(), StringUtils.SPACE)))
+                             .collect(Collectors.joining(SEPARATOR));
     }
 
     public void setJvmParameterTableText(String jvmParameterTableText)
     {
-        String[] split = StringUtils.split(jvmParameterTableText, "@@@");
+        String[] split = StringUtils.splitByWholeSeparator(jvmParameterTableText, SEPARATOR);
         if (split == null || split.length % 3 != 0)
         {
+            logger.error(
+                    "Couln't not parse the string '{}' to a proper representation of the table. Resultant array '{}'.",
+                    jvmParameterTableText, Arrays.toString(split));
             return;
         }
 
