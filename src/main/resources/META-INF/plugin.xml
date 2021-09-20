@@ -24,8 +24,8 @@
     <idea-version since-build="181.0"/>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationConfigurable instance="com.wtyt.lucky.idea.jvm.setting.SettingConfigurable" displayName="JVM Arguments"/>
-        <java.programPatcher implementation="com.wtyt.lucky.idea.jvm.JVMArgumentAppenderProgramPatcher"/>
+        <applicationConfigurable instance="io.github.jebeaudet.idea.jvm.setting.SettingConfigurable" displayName="JVM Arguments"/>
+        <java.programPatcher implementation="io.github.jebeaudet.idea.jvm.JVMArgumentsSetterProgramPatcher"/>
     </extensions>
 
     <actions>

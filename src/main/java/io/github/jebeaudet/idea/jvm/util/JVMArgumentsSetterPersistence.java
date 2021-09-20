@@ -1,4 +1,4 @@
-package com.wtyt.lucky.idea.jvm.util;
+package io.github.jebeaudet.idea.jvm.util;
 
 import com.intellij.ide.util.PropertiesComponent;
 
@@ -6,16 +6,17 @@ import com.intellij.ide.util.PropertiesComponent;
  * https://plugins.jetbrains.com/docs/intellij/persisting-state-of-components.html
  *
  * @author Lucky-maxinchun
+ * @author jebeaudet
  * @date 2021/7/14 14:42
  */
-public class AppConfigKit
+public final class JVMArgumentsSetterPersistence
 {
-    private static final String KEY_JVM_PARAMETER = "com.wtyt.lucky.idea.jvm.util.AppConfigKit.jvmParameter";
-    private static final String KEY_JVM_PARAMETER_LIST = "com.wtyt.lucky.idea.jvm.util.AppConfigKit.jvmParameterList";
+    private static final String KEY_JVM_PARAMETER = "io.github.jebeaudet.idea.jvm.util.JVMArgumentsSetterPersistence.jvmParameter";
+    private static final String KEY_JVM_PARAMETER_LIST = "io.github.jebeaudet.idea.jvm.util.JVMArgumentsSetterPersistence.jvmParameterList";
 
     private static final PropertiesComponent propertiesComponent = PropertiesComponent.getInstance();
 
-    private AppConfigKit()
+    private JVMArgumentsSetterPersistence()
     {
     }
 

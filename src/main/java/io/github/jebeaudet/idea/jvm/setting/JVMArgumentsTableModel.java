@@ -1,23 +1,31 @@
-package com.wtyt.lucky.idea.jvm.setting;
-
-import com.intellij.util.ui.EditableModel;
-
-import javax.swing.table.AbstractTableModel;
+package io.github.jebeaudet.idea.jvm.setting;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.table.AbstractTableModel;
+
+import com.intellij.util.ui.EditableModel;
+
 /**
  * @author huzunrong
+ * @author jebeaudet
  * @since 1.0
  */
 public class JVMArgumentsTableModel extends AbstractTableModel implements EditableModel
 {
-    List<Object[]> list = new ArrayList<>();
+    private static final long serialVersionUID = 6183423505608059672L;
 
-    private String[] head = {"", "Name", "Value"};
+    private List<Object[]> list = new ArrayList<>();
 
-    private Class[] typeArray = {Boolean.class, Object.class, Object.class};
+    private String[] head = { "", "Name", "Value" };
+
+    private Class<?>[] typeArray = { Boolean.class, Object.class, Object.class };
+
+    public List<Object[]> getList()
+    {
+        return list;
+    }
 
     @Override
     public int getRowCount()
@@ -64,7 +72,7 @@ public class JVMArgumentsTableModel extends AbstractTableModel implements Editab
 
     public void addRow(boolean enable, String name, String value)
     {
-        list.add(new Object[]{enable, name, value});
+        list.add(new Object[] { enable, name, value });
         fireTableRowsInserted(getRowCount() - 1, getRowCount());
     }
 
@@ -77,7 +85,7 @@ public class JVMArgumentsTableModel extends AbstractTableModel implements Editab
     @Override
     public void addRow()
     {
-        list.add(new Object[]{true, "", ""});
+        list.add(new Object[] { true, "", "" });
         fireTableRowsInserted(getRowCount() - 1, getRowCount());
     }
 
