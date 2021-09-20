@@ -1,8 +1,8 @@
 <idea-plugin>
-    <id>com.wtyt.lucky.idea.global-jvm-param</id>
-    <name>JVM Arguments</name>
+    <id>io.github.jebeaudet</id>
+    <name>JVM Arguments Setter</name>
     <version>1.0.3</version>
-    <vendor email="maxinchun@log56.com" url="https://github.com/codecly259/global-jvm-param">maxinchun</vendor>
+    <vendor email="jebeaudet+intellij@gmail.com" url="https://github.com/jebeaudet/jvm-arguments-setter">jebeaudet</vendor>
 
     <description><![CDATA[
     <p>Add custom jvm arguments for all projects, and append them to run option like <b>Application Run</b>.</p>
@@ -10,8 +10,8 @@
     <p>usage:</p>
     <ul>
         <li> File | Settings | Other Settings | <b>JVM Arguments</b> </li>
-        <li> If configure Name and Value, -DName=Value will be added to jvm parameter </li>
-        <li> If only configure Name, Name will be added to jvm parameter; for example -javaagent:D:\test\test-agant.jar </li>
+        <li> If Name and Value are configured, -DName=Value will be added to the JVM arguments </li>
+	<li> If only Name is configured, Name will be added to JVM arguments; for example -javaagent:/home/foo/bar.jar </li>
         <li> The parameters configured above will be added to the startup command when you click run/debug button </li>
     </ul>
 

@@ -1,9 +1,7 @@
-# global-jvm-param
+# IntelliJ JVM arguments setter plugin
 
-manage global jvm parameter: add custom jvm parameter for all projects, and append them to run option like `Application Run`.
+This plugin allows you to easily set JVM arguments globally across all your run configurations in IntelliJ.
 
-jvm参数管理：添加自定义参数，对所有 project 生效， 如：-Xms512m，在项目启动时会自动设置到jvm启动参数中。
+This plugin is not currently on the marketplace and has to be installed manually.
 
-参考项目: [jvm-parameter-intellij-plugin](https://github.com/huzunrong/jvm-parameter-intellij-plugin)
-
-thanks to huzunrong
+Forked from this project [global-jvm-param](https://github.com/codecly259/global-jvm-param) thanks to codecly259 for adding a proper license for extension!
