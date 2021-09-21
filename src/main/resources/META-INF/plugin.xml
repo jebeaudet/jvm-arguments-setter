@@ -1,15 +1,15 @@
 <idea-plugin>
     <id>io.github.jebeaudet</id>
     <name>JVM Arguments Setter</name>
-    <version>1.0.3</version>
+    <version>1.0.4</version>
     <vendor email="jebeaudet+intellij@gmail.com" url="https://github.com/jebeaudet/jvm-arguments-setter">jebeaudet</vendor>
 
     <description><![CDATA[
-    <p>Add custom jvm arguments for all projects, and append them to run option like <b>Application Run</b>.</p>
+    <p>Add custom JVM arguments for all projects.</p>
 
-    <p>usage:</p>
+    <p>How to Use:</p>
     <ul>
-        <li> File | Settings | Other Settings | <b>JVM Arguments</b> </li>
+        <li> File | Settings | Other Settings | <b>JVM Arguments Setter</b> </li>
         <li> If Name and Value are configured, -DName=Value will be added to the JVM arguments </li>
 	<li> If only Name is configured, Name will be added to JVM arguments; for example -javaagent:/home/foo/bar.jar </li>
         <li> The parameters configured above will be added to the startup command when you click run/debug button </li>
@@ -24,7 +24,7 @@
     <idea-version since-build="181.0"/>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationConfigurable instance="io.github.jebeaudet.idea.jvm.setting.SettingConfigurable" displayName="JVM Arguments"/>
+        <applicationConfigurable instance="io.github.jebeaudet.idea.jvm.setting.SettingConfigurable" displayName="JVM Arguments Setter"/>
         <java.programPatcher implementation="io.github.jebeaudet.idea.jvm.JVMArgumentsSetterProgramPatcher"/>
     </extensions>
 

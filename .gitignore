@@ -1,3 +1,6 @@
+chain.crt
+private.pem
+.token
 # maven ignore
 target/
 

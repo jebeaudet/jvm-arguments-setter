@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'io.github.jebeaudet'
-version '1.0.3'
+version '1.0.4'
 
 sourceCompatibility = 1.8
 
@@ -22,8 +22,14 @@ intellij {
     plugins = ['java']
 }
 
+signPlugin {
+  certificateChain = System.getenv("CERTIFICATE_CHAIN")
+  privateKey = System.getenv("PRIVATE_KEY")
+  password = System.getenv("PRIVATE_KEY_PASSWORD")
+}
+
 publishPlugin {
-    token = System.getenv("ORG_GRADLE_PROJECT_intellijPublishToken")
+  token = System.getenv("PUBLISH_TOKEN")
 }
 
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
