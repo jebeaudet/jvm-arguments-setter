@@ -44,7 +44,12 @@ public class SettingForm
                                            String value = String.valueOf(args[2]);
                                            if (StringUtils.isEmpty(value)) {
                                                return key;
+
                                            }
+                                           if (key.startsWith("--") || key.startsWith("-")) {
+                                               return key + " " + value;
+                                           }
+
                                            String argument = "-D" + key + "=" + value;
                                            return StringUtils.containsWhitespace(value) ? String.format("\"%s\"",
                                                                                                         argument)
@@ -87,10 +92,13 @@ public class SettingForm
     public void setJvmParameterTableText(String jvmParameterTableText)
     {
         String[] split = StringUtils.splitByWholeSeparator(jvmParameterTableText, SEPARATOR);
-        if (split == null || split.length % 3 != 0) {
-            logger.error("Couln't not parse the string '{}' to a proper representation of the table. Resultant array '{}'.",
-                         jvmParameterTableText,
-                         Arrays.toString(split));
+        if (split == null) {
+            return;
+        }
+        if (split.length % 3 != 0) {
+            logger.error(String.format("Couln't not parse the string '%s' to a proper representation of the table. Resultant array '%s'.",
+                                       jvmParameterTableText,
+                                       Arrays.toString(split)));
             return;
         }
 

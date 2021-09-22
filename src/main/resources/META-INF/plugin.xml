@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>io.github.jebeaudet</id>
     <name>JVM Arguments Setter</name>
-    <version>1.0.4</version>
+    <version>1.1.0</version>
     <vendor email="jebeaudet+intellij@gmail.com" url="https://github.com/jebeaudet/jvm-arguments-setter">jebeaudet</vendor>
 
     <description><![CDATA[
@@ -11,7 +11,8 @@
     <ul>
         <li> File | Settings | Other Settings | <b>JVM Arguments Setter</b> </li>
         <li> If Name and Value are configured, -DName=Value will be added to the JVM arguments </li>
-	<li> If only Name is configured, Name will be added to JVM arguments; for example -javaagent:/home/foo/bar.jar </li>
+	    <li> If only Name is configured, Name will be added to JVM arguments; for example -javaagent:/home/foo/bar.jar </li>
+	    <li> If Name is configured with 1 or 2 leading dashes and Value, Name will be added to JVM arguments with the value; for example --add-opens module=ALL </li>
         <li> The parameters configured above will be added to the startup command when you click run/debug button </li>
     </ul>
 
