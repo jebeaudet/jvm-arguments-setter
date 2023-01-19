@@ -3,6 +3,8 @@ package io.github.jebeaudet.idea.jvm.util;
 import java.util.Optional;
 
 import com.intellij.ide.util.PropertiesComponent;
+import io.github.jebeaudet.idea.jvm.setting.SettingForm;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * https://plugins.jetbrains.com/docs/intellij/persisting-state-of-components.html
@@ -13,11 +15,11 @@ import com.intellij.ide.util.PropertiesComponent;
  */
 public final class JVMArgumentsSetterPersistence
 {
-    private static final String DEPRECATED_KEY_JVM_PARAMETER = "com.wtyt.lucky.idea.jvm.util.AppConfigKit.jvmParameter";
-    private static final String DEPRECATED_KEY_JVM_PARAMETER_LIST = "com.wtyt.lucky.idea.jvm.util.AppConfigKit.jvmParameterList";
-
     private static final String KEY_JVM_PARAMETER = "io.github.jebeaudet.idea.jvm.util.JVMArgumentsSetterPersistence.jvmParameter";
+    private static final String TEST_KEY_JVM_PARAMETER = "io.github.jebeaudet.idea.jvm.util.JVMArgumentsSetterPersistence.testJvmParameter";
+
     private static final String KEY_JVM_PARAMETER_LIST = "io.github.jebeaudet.idea.jvm.util.JVMArgumentsSetterPersistence.jvmParameterList";
+    private static final String KEY_JVM_PARAMETER_LIST_V2 = "io.github.jebeaudet.idea.jvm.util.JVMArgumentsSetterPersistence.jvmParameterListV2";
 
     private static final PropertiesComponent propertiesComponent = PropertiesComponent.getInstance();
 
@@ -25,25 +27,33 @@ public final class JVMArgumentsSetterPersistence
     {
     }
 
-    public static String getJvmArguments()
+    public static String getJvmArguments(boolean isTestRun)
     {
-        return Optional.ofNullable(propertiesComponent.getValue(KEY_JVM_PARAMETER))
-                       .orElseGet(() -> propertiesComponent.getValue(DEPRECATED_KEY_JVM_PARAMETER));
+        return isTestRun ? propertiesComponent.getValue(TEST_KEY_JVM_PARAMETER) : propertiesComponent.getValue(KEY_JVM_PARAMETER);
     }
 
-    public static void setJvmParameter(String jvmParameter)
+    public static void setJvmParameter(String jvmParameters, String testJvmParameters)
     {
-        propertiesComponent.setValue(KEY_JVM_PARAMETER, jvmParameter);
+        propertiesComponent.setValue(KEY_JVM_PARAMETER, jvmParameters);
+        propertiesComponent.setValue(TEST_KEY_JVM_PARAMETER, testJvmParameters);
     }
 
     public static String getJvmParameterList()
     {
-        return Optional.ofNullable(propertiesComponent.getValue(KEY_JVM_PARAMETER_LIST))
-                       .orElseGet(() -> propertiesComponent.getValue(DEPRECATED_KEY_JVM_PARAMETER_LIST));
+        String parametersV1 = propertiesComponent.getValue(KEY_JVM_PARAMETER_LIST);
+        String parametersV2 = propertiesComponent.getValue(KEY_JVM_PARAMETER_LIST_V2);
+        if (parametersV2 == null && parametersV1 != null) {
+            parametersV2 = SettingForm.migrateToV2(parametersV1);
+            if (parametersV2 != null) {
+                propertiesComponent.unsetValue(KEY_JVM_PARAMETER_LIST);
+                propertiesComponent.setValue(KEY_JVM_PARAMETER_LIST_V2, parametersV2);
+            }
+        }
+        return parametersV2;
     }
 
     public static void setJvmParameterList(String jvmParameterList)
     {
-        propertiesComponent.setValue(KEY_JVM_PARAMETER_LIST, jvmParameterList);
+        propertiesComponent.setValue(KEY_JVM_PARAMETER_LIST_V2, jvmParameterList);
     }
 }

@@ -48,7 +48,7 @@ public class SettingConfigurable implements Configurable
     @Override
     public void apply()
     {
-        JVMArgumentsSetterPersistence.setJvmParameter(settingForm.getJvmParameterText());
+        JVMArgumentsSetterPersistence.setJvmParameter(settingForm.getJvmParameterText(), settingForm.getTestJvmParameterText());
         JVMArgumentsSetterPersistence.setJvmParameterList(settingForm.getJvmParameterTableText());
     }
 
