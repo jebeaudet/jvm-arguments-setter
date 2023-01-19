@@ -18,7 +18,7 @@ public class JVMArgumentsSetterProgramPatcher extends JavaProgramPatcher
     @Override
     public void patchJavaParameters(Executor executor, RunProfile configuration, JavaParameters javaParameters)
     {
-        if (configuration instanceof RunConfiguration) {
+        if (JVMArgumentsSetterPersistence.getIsEnabled() && configuration instanceof RunConfiguration) {
             String runType = ((RunConfiguration) configuration).getType().getId();
             String jvmArguments = JVMArgumentsSetterPersistence.getJvmArguments(runType != null && TEST_TYPES.contains(runType));
             if (StringUtils.isNotBlank(jvmArguments)) {

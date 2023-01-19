@@ -2,15 +2,17 @@ package io.github.jebeaudet.idea.jvm.setting;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Arrays;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
 import javax.swing.event.TableModelListener;
 
+import io.github.jebeaudet.idea.jvm.util.JVMArgumentsSetterPersistence;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -34,6 +36,7 @@ public class SettingForm {
     private JPanel decorationLayoutPanel;
     private JTextField jvmArgsTestTextField;
     private JTextField jvmArgsTextField;
+    JCheckBox enabledCheckBox;
     private JVMArgumentsTableModel dataModel = new JVMArgumentsTableModel();
 
     private TableModelListener tableModelListener = event -> {
@@ -75,11 +78,12 @@ public class SettingForm {
     private void init() {
         dataModel.addTableModelListener(tableModelListener);
 
-        JBTable jbTable = new ToolTipJTable(dataModel);
+        JBTable jbTable = new JBTable(dataModel);
         jbTable.getColumnModel().getColumn(0).setMaxWidth(MIN_MAX_WIDTH);
         jbTable.getColumnModel().getColumn(0).setMinWidth(MIN_MAX_WIDTH);
         jbTable.getColumnModel().getColumn(3).setMaxWidth(MIN_MAX_WIDTH);
         jbTable.getColumnModel().getColumn(3).setMinWidth(MIN_MAX_WIDTH);
+        jbTable.getTableHeader().setReorderingAllowed(false);
 
         ToolbarDecorator decorationToolbar = ToolbarDecorator.createDecorator(jbTable);
 

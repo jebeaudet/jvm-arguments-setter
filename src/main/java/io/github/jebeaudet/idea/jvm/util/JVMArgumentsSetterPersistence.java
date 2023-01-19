@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import com.intellij.ide.util.PropertiesComponent;
 import io.github.jebeaudet.idea.jvm.setting.SettingForm;
+import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -17,6 +18,8 @@ public final class JVMArgumentsSetterPersistence
 {
     private static final String KEY_JVM_PARAMETER = "io.github.jebeaudet.idea.jvm.util.JVMArgumentsSetterPersistence.jvmParameter";
     private static final String TEST_KEY_JVM_PARAMETER = "io.github.jebeaudet.idea.jvm.util.JVMArgumentsSetterPersistence.testJvmParameter";
+
+    private static final String KEY_PLUGIN_ENABLED = "io.github.jebeaudet.idea.jvm.util.JVMArgumentsSetterPersistence.pluginEnabled";
 
     private static final String KEY_JVM_PARAMETER_LIST = "io.github.jebeaudet.idea.jvm.util.JVMArgumentsSetterPersistence.jvmParameterList";
     private static final String KEY_JVM_PARAMETER_LIST_V2 = "io.github.jebeaudet.idea.jvm.util.JVMArgumentsSetterPersistence.jvmParameterListV2";
@@ -36,6 +39,16 @@ public final class JVMArgumentsSetterPersistence
     {
         propertiesComponent.setValue(KEY_JVM_PARAMETER, jvmParameters);
         propertiesComponent.setValue(TEST_KEY_JVM_PARAMETER, testJvmParameters);
+    }
+
+    public static boolean getIsEnabled()
+    {
+        return propertiesComponent.getBoolean(KEY_PLUGIN_ENABLED, true);
+    }
+
+    public static void setEnabled(boolean enabled)
+    {
+         propertiesComponent.setValue(KEY_PLUGIN_ENABLED, Boolean.toString(enabled));
     }
 
     public static String getJvmParameterList()
