@@ -33,7 +33,7 @@
     <change-notes><![CDATA[
         <h2>1.2.0</h2>
         <ul>
-          <li>Added the possibility to disable certain parameters in run configurations</li>
+          <li>Added the possibility to disable certain parameters in test run configurations</li>
           <li>Added a global kill switch to disable the plugin entirely</li>
         </ul>
 ]]></change-notes>
