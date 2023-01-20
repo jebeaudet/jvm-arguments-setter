@@ -15,46 +15,41 @@ import io.github.jebeaudet.idea.jvm.util.JVMArgumentsSetterPersistence;
  * @author jebeaudet
  * @date 2021/7/14 13:56
  */
-public class SettingConfigurable implements Configurable
-{
+public class SettingConfigurable implements Configurable {
     private final SettingForm settingForm;
 
-    public SettingConfigurable()
-    {
+    public SettingConfigurable() {
         this.settingForm = new SettingForm();
     }
 
     @Nls(capitalization = Nls.Capitalization.Title)
     @Override
-    public String getDisplayName()
-    {
+    public String getDisplayName() {
         return "JVM Arguments Setter";
     }
 
     @Nullable
     @Override
-    public JComponent createComponent()
-    {
+    public JComponent createComponent() {
         return settingForm.mainPanel;
     }
 
     @Override
-    public boolean isModified()
-    {
+    public boolean isModified() {
         return !StringUtils.equals(JVMArgumentsSetterPersistence.getJvmParameterList(),
-                                   settingForm.getJvmParameterTableText());
+                settingForm.getJvmParameterTableText()) || JVMArgumentsSetterPersistence.getIsEnabled() != settingForm.enabledCheckBox.isSelected();
     }
 
     @Override
-    public void apply()
-    {
-        JVMArgumentsSetterPersistence.setJvmParameter(settingForm.getJvmParameterText());
+    public void apply() {
+        JVMArgumentsSetterPersistence.setJvmParameter(settingForm.getJvmParameterText(), settingForm.getTestJvmParameterText());
         JVMArgumentsSetterPersistence.setJvmParameterList(settingForm.getJvmParameterTableText());
+        JVMArgumentsSetterPersistence.setEnabled(settingForm.enabledCheckBox.isSelected());
     }
 
     @Override
-    public void reset()
-    {
+    public void reset() {
         settingForm.setJvmParameterTableText(JVMArgumentsSetterPersistence.getJvmParameterList());
+        settingForm.enabledCheckBox.setSelected(JVMArgumentsSetterPersistence.getIsEnabled());
     }
 }
