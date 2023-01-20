@@ -3,7 +3,7 @@ private.pem
 .token
 # maven ignore
 target/
-
+*.pem
 # eclipse ignore
 .settings/
 .project
