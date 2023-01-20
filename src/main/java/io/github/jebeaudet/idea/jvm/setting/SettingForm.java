@@ -96,9 +96,9 @@ public class SettingForm {
         return dataModel.getList()
                 .stream()
                 .filter(args -> StringUtils.isNotBlank(String.valueOf(args[1])))
-                .flatMap(objects -> Stream.of(objects)
-                        .map(object -> StringUtils.defaultIfBlank(object.toString(),
-                                StringUtils.SPACE)))
+                .flatMap(Stream::of)
+                .map(object -> StringUtils.defaultIfBlank(object.toString(),
+                        StringUtils.SPACE))
                 .collect(Collectors.joining(SEPARATOR));
     }
 
@@ -126,6 +126,7 @@ public class SettingForm {
     public String getJvmParameterText() {
         return jvmArgsTextField.getText();
     }
+
     public String getTestJvmParameterText() {
         return jvmArgsTestTextField.getText();
     }

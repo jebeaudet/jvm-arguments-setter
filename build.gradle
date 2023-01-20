@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'io.github.jebeaudet'
-version '1.2.0'
+version project.properties['pluginVersion']
 
 sourceCompatibility = 11
 
@@ -17,7 +17,7 @@ dependencies {
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
-    version.set('2021.2.1')
+    version.set(project.properties['intellijVersion'])
     updateSinceUntilBuild.set(false)
     plugins = ['java']
 }
@@ -34,6 +34,11 @@ signPlugin {
 
 publishPlugin {
   token = System.getenv("PUBLISH_TOKEN")
+}
+
+patchPluginXml {
+    version.set(project.properties['pluginVersion'])
+    sinceBuild.set(project.properties['sinceBuild'])
 }
 
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
