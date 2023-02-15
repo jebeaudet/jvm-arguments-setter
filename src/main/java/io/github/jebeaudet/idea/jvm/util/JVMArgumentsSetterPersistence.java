@@ -73,7 +73,7 @@ public final class JVMArgumentsSetterPersistence
         propertiesComponent.setValue(KEY_JVM_PARAMETER_LIST_V2, jvmParameterList);
     }
 
-    private static void isConfigNotMigrated()
+    private static boolean isConfigNotMigrated()
     {
         String parametersV1 = propertiesComponent.getValue(KEY_JVM_PARAMETER_LIST);
         String parametersV2 = propertiesComponent.getValue(KEY_JVM_PARAMETER_LIST_V2);
