@@ -32,6 +32,9 @@ public final class JVMArgumentsSetterPersistence
 
     public static String getJvmArguments(boolean isTestRun)
     {
+        if(isConfigNotMigrated()) {
+            return propertiesComponent.getValue(KEY_JVM_PARAMETER);
+        }
         return isTestRun ? propertiesComponent.getValue(TEST_KEY_JVM_PARAMETER) : propertiesComponent.getValue(KEY_JVM_PARAMETER);
     }
 
@@ -68,5 +71,12 @@ public final class JVMArgumentsSetterPersistence
     public static void setJvmParameterList(String jvmParameterList)
     {
         propertiesComponent.setValue(KEY_JVM_PARAMETER_LIST_V2, jvmParameterList);
+    }
+
+    private static void isConfigNotMigrated()
+    {
+        String parametersV1 = propertiesComponent.getValue(KEY_JVM_PARAMETER_LIST);
+        String parametersV2 = propertiesComponent.getValue(KEY_JVM_PARAMETER_LIST_V2);
+        return parametersV2 == null && parametersV1 != null;
     }
 }
