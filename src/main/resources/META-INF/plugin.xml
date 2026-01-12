@@ -31,6 +31,10 @@
     </extensions>
 
     <change-notes><![CDATA[
+        <h2>1.2.3</h2>
+        <ul>
+          <li>Fix the deprecated usage of Apache StringUtils equals method</li>
+        </ul>
         <h2>1.2.2</h2>
         <ul>
           <li>Fix empty argument set on test run configurations when the config has not been migrated to the new format</li>
