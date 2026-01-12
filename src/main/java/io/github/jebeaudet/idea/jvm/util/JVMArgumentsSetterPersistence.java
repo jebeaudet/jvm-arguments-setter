@@ -1,11 +1,7 @@
 package io.github.jebeaudet.idea.jvm.util;
 
-import java.util.Optional;
-
 import com.intellij.ide.util.PropertiesComponent;
 import io.github.jebeaudet.idea.jvm.setting.SettingForm;
-import org.apache.commons.lang3.BooleanUtils;
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * https://plugins.jetbrains.com/docs/intellij/persisting-state-of-components.html

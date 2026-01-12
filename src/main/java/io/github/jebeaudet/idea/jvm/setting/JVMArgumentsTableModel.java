@@ -1,16 +1,14 @@
 package io.github.jebeaudet.idea.jvm.setting;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.swing.*;
-import javax.swing.table.AbstractTableModel;
-
-import com.intellij.openapi.util.NlsContexts;
 import com.intellij.util.ui.ColumnInfo;
 import com.intellij.util.ui.EditableModel;
 import com.intellij.util.ui.SortableColumnModel;
 import org.jetbrains.annotations.Nullable;
+
+import javax.swing.*;
+import javax.swing.table.AbstractTableModel;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author huzunrong

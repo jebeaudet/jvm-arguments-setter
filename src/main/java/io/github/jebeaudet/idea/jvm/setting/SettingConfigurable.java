@@ -1,14 +1,11 @@
 package io.github.jebeaudet.idea.jvm.setting;
 
-import javax.swing.JComponent;
-
-import org.apache.commons.lang3.StringUtils;
+import com.intellij.openapi.options.Configurable;
+import io.github.jebeaudet.idea.jvm.util.JVMArgumentsSetterPersistence;
 import org.jetbrains.annotations.Nls;
 import org.jetbrains.annotations.Nullable;
 
-import com.intellij.openapi.options.Configurable;
-
-import io.github.jebeaudet.idea.jvm.util.JVMArgumentsSetterPersistence;
+import javax.swing.*;
 
 /**
  * @author Lucky-maxinchun
